@@ -20,7 +20,7 @@ class MathGraphApp:
 
     def create_widgets(self):
         Label(self.frame, text="Function:").grid(row=0, column=0)
-        OptionMenu(self.frame, self.function_var, "sin", "cos", "tan", "cot").grid(row=0, column=1)
+        OptionMenu(self.frame, self.function_var, "sin", "cos", "tan", "cot", "radians", "circle", "ellipse").grid(row=0, column=1)
 
         Label(self.frame, text="Amplitude:").grid(row=1, column=0)
         Entry(self.frame, textvariable=self.amplitude_var).grid(row=1, column=1)
@@ -49,6 +49,16 @@ class MathGraphApp:
             y = amplitude * np.tan(frequency * x + phase)
         elif function == "cot":
             y = amplitude * (1/np.tan(frequency * x + phase))
+        elif function == "radians":
+            y = np.radians(x)
+        elif function == "circle":
+            theta = np.linspace(0, 2*np.pi, 400)
+            x = amplitude * np.cos(theta)
+            y = amplitude * np.sin(theta)
+        elif function == "ellipse":
+            theta = np.linspace(0, 2*np.pi, 400)
+            x = amplitude * np.cos(theta)
+            y = frequency * np.sin(theta)
         else:
             return
 
